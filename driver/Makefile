@@ -61,7 +61,8 @@ endif
 #
 # Now, this is for compiling the modules.
 #
-KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+UNAME_R ?= $(shell uname -r)
+KERNELDIR ?= /lib/modules/$(UNAME_R)/build
 PWD := $(shell pwd)
 
 # Build these RT kernel drivers
@@ -77,9 +78,9 @@ XCROSS_HOME_3.18.11-rt7	= /afs/slac/package/linuxRT/buildroot-2015.02/host/linux
 
 modules: modclean
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-	@/bin/rm -f evr_device.ko.`uname -r`.`arch`
-	cp evr_device.ko evr_device.ko.`uname -r`.`arch`
-	@chmod 0644 evr_device.ko.`uname -r`.`arch`
+	@/bin/rm -f evr_device.ko.$(UNAME_R).`arch`
+	cp evr_device.ko evr_device.ko.$(UNAME_R).`arch`
+	@chmod 0644 evr_device.ko.$(UNAME_R).`arch`
 
 ifeq '$(EPICS_HOST_ARCH)' 'rhel6-x86_64'
 modules: linuxRT

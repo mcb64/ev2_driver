@@ -8,6 +8,7 @@ daq-tmo-hsd-01     3.10.0-1062.9.1.el7.x86_64
 ued-daq            3.10.0-1160.90.1.el7.x86_64
 
 Note:
-ioc-lfe-gasdet-daq uses 2.6.26.8-rt16.i686.  This doesn't seem to compile natively.
-Maybe with:
-make KERNELDIR=/cds/home/m/mcbrowne/src/linux-2.6.26.8-rt DO_INCLUDES=n
+ioc-lfe-gasdet-daq and the EVG crates use 2.6.26.8-rt16.i686.
+
+On psbuild-rhel5, start a shell with "i386".  Then:
+    make KERNELDIR=/opt/linux-2.6.26.8-rt DO_INCLUDES=n UNAME_R=2.6.26.8-rt16
